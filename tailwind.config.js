@@ -5,7 +5,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'skills-list': 'repeat(auto-fit, minmax(100px, 1fr))',
+      }
+    },
   },
   plugins: [],
 }

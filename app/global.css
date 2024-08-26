@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.body-background {
+    z-index: -1;
+    background-color: #f8f8fd; 
+    opacity: 0.2;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f8f8fd 12px ), repeating-linear-gradient( #eab30855, #eab308 );
+}

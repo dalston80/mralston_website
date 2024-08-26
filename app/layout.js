@@ -11,18 +11,29 @@ export default function RootLayout({children}) {
   const menuItems = [
     {
         id: 1,
-        url: '/',
+        url: '#home',
         title: 'Home'
+    },
+    {
+      id: 2,
+        url: '#experience',
+        title: 'Experience'
+    },
+    {
+      id: 3,
+        url: '#projects',
+        title: 'Projects'
     }
   ]
 
   return (
-    <html lang='en'>
+    <html lang='en' className="scroll-smooth">
         <body className='font-sans'>
-          <main className="flex flex-col lg:flex-row max-w-xs">
+          <div className='body-background w-full h-screen fixed z-0'/>
+          <main className="flex flex-col lg:flex-row">
             <Header title={'Mr. Alston'} menuItems={menuItems} />
             <div>
-              {children}
+              {children}  
             </div>
           </main>
         </body>

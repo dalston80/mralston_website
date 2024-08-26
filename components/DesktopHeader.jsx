@@ -11,7 +11,7 @@ export default function DesktopHeader({title, menuItems}) {
     >
         <div className="flex gap-12 pt-5">
             <a className="font-bold" href="/">
-                <Image src={logo} alt={title}/>
+                <Image priority src={logo} alt={title}/>
             </a>
         </div>
         <DesktopMenu menuItems={menuItems}/>

@@ -10,9 +10,17 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
-    "next": "^13.4.9",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.41.1",
+    "eslint-config-next": "^14.2.3",
+    "framer-motion": "^11.2.10",
+    "next": "^14.2.3",
+    "next-sanity": "^7.1.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "sanity": "^3.41.1",
+    "styled-components": "^6.1.10"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
