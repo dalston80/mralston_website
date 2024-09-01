@@ -7,7 +7,7 @@ const Projects = ({currentProjects}) => {
         </h1>
         {currentProjects.map(project => {
             return (
-                <p key={project._key}>
+                <p key={project._key} className="text-blue-800">
                     {project.children[0].text ? project.children[0].text : (<br/>)}
                 </p>
             )

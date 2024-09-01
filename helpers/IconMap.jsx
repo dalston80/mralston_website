@@ -1,6 +1,6 @@
 import { SiTypescript } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
-import { FaAngular, FaCss3, FaHtml5, FaJsSquare, FaLaravel, FaNodeJs, FaPhp, FaReact } from "react-icons/fa";
+import { FaAngular, FaCss3, FaFacebook, FaGithub, FaHtml5, FaInstagram, FaJsSquare, FaLaravel, FaLinkedin, FaNodeJs, FaPhp, FaReact } from "react-icons/fa";
 
 export const IconMap = {
     'HTML': {
@@ -42,5 +42,21 @@ export const IconMap = {
     'Laravel': {
         icon: <FaLaravel />,
         color: 'text-red-500',
+    },
+    'github': {
+        icon: <FaGithub />,
+        color: 'text-gray-500',
+    },
+    'linkedin': {
+        icon: <FaLinkedin />,
+        color: 'text-gray-500',
+    },
+    'facebook': {
+        icon: <FaFacebook />,
+        color: 'text-gray-500',
+    },
+    'instagram': {
+        icon: <FaInstagram />,
+        color: 'text-gray-500',
     }
 }

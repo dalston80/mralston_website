@@ -6,10 +6,6 @@ import ExperienceDisplay from '../components/experience/ExperienceDisplay'
 import Link from 'next/link'
 import Projects from '../components/projects/Projects'
 
-export const metadata = {
-    title: 'Home Page',
-}
-
 export default async function Home() {
   const profile = await getProfile()
   
