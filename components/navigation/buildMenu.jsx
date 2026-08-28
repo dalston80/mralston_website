@@ -1,68 +1,13 @@
-
-import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { root } from "postcss"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-export const buildMenu = (menuItems) => {
-    const router = useRouter()
-    let [activeSection, setActiveSection] = useState('')
-    //let [menuItemClicked, setMenuItemClicked] = useState(false)
-
-    const jumpToHash = (hash) => {
-        router.push(hash)
-        // setMenuItemClicked(true)
-        // setTimeout(() => {
-        //     setMenuItemClicked(false)
-        // }, 500)
-        setActiveSection(hash)
-    }
-
-    // useEffect(() => {
-
-    //     const observerOptions = {
-    //         root: null,
-    //         rootMargin: '0px',
-    //         threshold: 0.2
-    //     }
-        
-    //     const sections = document.querySelectorAll('section')
-
-    //     const observer = new IntersectionObserver((entries, observer) => {
-            
-    //         entries.forEach(entry => {
-    //             if (entry.isIntersecting) {
-    //                 jumpToHash(`#${entry.target.id}`)
-    //                 //setActiveSection(`#${entry.target.id}`)
-    //             }
-    //         })
-            
-    //     }, observerOptions)
-
-    //     if (!menuItemClicked) {
-    //         sections.forEach(section => {
-    //             if (section.id) {
-    //                 observer.observe(section)
-    //             }
-    //         })
-    //     } else {
-    //         sections.forEach(section => {
-    //             if (section.id) {
-    //                 observer.unobserve(section)
-    //             }
-    //         })
-    //     }
-        
-    // }, [])
-    
+const renderMenu = (menuItems, jumpToHash, activeSection) => {
     return menuItems.map((menuItem) => {
         let submenu = null
-        let url = menuItem.url
         let submenuItems = menuItem.items
-        //activeSection = menuItem.url.startsWith('#') ? (menuItem.url === location.hash) : (menuItem.url === pathname)
 
         if (submenuItems && submenuItems.length > 0) {
-            submenu = (<ul className="sub-menu">{buildMenu(submenuItems)}</ul>)
+            submenu = (<ul className="sub-menu">{renderMenu(submenuItems, jumpToHash, activeSection)}</ul>)
         }
 
         return (
@@ -72,4 +17,16 @@ export const buildMenu = (menuItems) => {
             </li>
         )
     })
+}
+
+export const useMenu = (menuItems) => {
+    const router = useRouter()
+    let [activeSection, setActiveSection] = useState('')
+
+    const jumpToHash = (hash) => {
+        router.push(hash)
+        setActiveSection(hash)
+    }
+
+    return renderMenu(menuItems, jumpToHash, activeSection)
 }

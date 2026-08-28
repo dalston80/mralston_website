@@ -1,5 +1,5 @@
 import {Fragment, useState} from 'react';
-import {Dialog, Transition} from '@headlessui/react';
+import {Dialog, DialogPanel, DialogTitle, Transition, TransitionChild} from '@headlessui/react';
 import {FaTimes} from 'react-icons/fa';
 import IconStyler from './IconStyler';
 
@@ -23,7 +23,7 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
-        <Transition.Child
+        <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0 left-0"
@@ -32,8 +32,8 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
+          <div className="fixed inset-0 bg-black/25" />
+        </TransitionChild>
 
         <div className="fixed inset-0">
           <div className="absolute inset-0 overflow-hidden">
@@ -42,7 +42,7 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
                 openFrom === 'right' ? 'right-0' : ''
               }`}
             >
-              <Transition.Child
+              <TransitionChild
                 as={Fragment}
                 enter="transform transition ease-in-out duration-300"
                 enterFrom={offScreen[openFrom]}
@@ -51,16 +51,16 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
                 leaveFrom="translate-x-0"
                 leaveTo={offScreen[openFrom]}
               >
-                <Dialog.Panel className="w-screen max-w-lg text-left align-middle transition-all transform shadow-xl h-screen-dynamic bg-blue-950">
+                <DialogPanel className="w-screen max-w-lg text-left align-middle transition-all transform shadow-xl h-screen-dynamic bg-blue-950">
                   <header
                     className={`sticky top-0 flex items-center px-6 h-nav sm:px-8 md:px-12 ${
                       heading ? 'justify-between' : 'justify-end'
                     }`}
                   >
                     {heading !== null && (
-                      <Dialog.Title>
+                      <DialogTitle>
                         {/* keep empty to keep proper spacing */}
-                      </Dialog.Title>
+                      </DialogTitle>
                     )}
                     <button
                       type="button"
@@ -75,8 +75,8 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
                     </button>
                   </header>
                   {children}
-                </Dialog.Panel>
-              </Transition.Child>
+                </DialogPanel>
+              </TransitionChild>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export function Drawer({heading, open, onClose, openFrom = 'right', children}) {
 }
 
 /* Use for associating arialabelledby with the title*/
-Drawer.Title = Dialog.Title;
+Drawer.Title = DialogTitle;
 
 export function useDrawer(openDefault = false) {
   const [isOpen, setIsOpen] = useState(openDefault);

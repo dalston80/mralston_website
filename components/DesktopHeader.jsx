@@ -2,6 +2,7 @@
 import DesktopMenu from './navigation/DesktopMenu'
 import logo from '../public/mralston-logo.svg'
 import Image from 'next/image'
+import Link from 'next/link'
 import SocialLinks from './navigation/SocialLinks'
 
 export default function DesktopHeader({title, menuItems, socialLinks}) {
@@ -12,9 +13,9 @@ export default function DesktopHeader({title, menuItems, socialLinks}) {
     >
       <div className="flex flex-col gap-4 pt-5 items-center">
         <div className="flex gap-12 pt-5">
-            <a className="font-bold" href="/">
+            <Link className="font-bold" href="/">
                 <Image priority src={logo} alt={title}/>
-            </a>
+            </Link>
         </div>
         <DesktopMenu menuItems={menuItems}/>
         <SocialLinks socialLinks={socialLinks}/>

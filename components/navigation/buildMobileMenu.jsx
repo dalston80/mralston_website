@@ -1,36 +1,33 @@
-import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-export const buildMobileMenu = (menuItems, onClose) => {
-    const router = useRouter()
-    let [activeSection, setActiveSection] = useState('')
-
-    const jumpToHash = (hash) => {
-        router.push(hash)
-        // setMenuItemClicked(true)
-        // setTimeout(() => {
-        //     setMenuItemClicked(false)
-        // }, 500)
-        setActiveSection(hash)
-        onClose()
-    }
-    
+const renderMobileMenu = (menuItems, jumpToHash, activeSection) => {
     return menuItems.map((menuItem) => {
         let submenu = null
-        let url = menuItem.url
         let submenuItems= menuItem.items
 
         if (submenuItems && submenuItems.length > 0) {
-            submenu = (<ul className="sub-menu">{buildMobileMenu(submenuItems, onClose)}</ul>)
+            submenu = (<ul className="sub-menu">{renderMobileMenu(submenuItems, jumpToHash, activeSection)}</ul>)
         }
 
         return (
             <li key={menuItem.id} className="menu-item">
-                {/* <Link href={url} onClick={onClose} className="text-white hover:text-yellow-500 transition-all duration-300">{menuItem.title}</Link> */}
                 <button onClick={(e) => {e.preventDefault(); jumpToHash(menuItem.url)}} className={`text-gray-100 ${menuItem.url === activeSection ? 'text-yellow-500' : 'text-gray-100'} text-xl hover:text-yellow-500 transition-all duration-300`}>{menuItem.title}</button>
                 {submenu}
             </li>
         )
     })
+}
+
+export const useMobileMenu = (menuItems, onClose) => {
+    const router = useRouter()
+    let [activeSection, setActiveSection] = useState('')
+
+    const jumpToHash = (hash) => {
+        router.push(hash)
+        setActiveSection(hash)
+        onClose()
+    }
+
+    return renderMobileMenu(menuItems, jumpToHash, activeSection)
 }

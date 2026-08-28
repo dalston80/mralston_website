@@ -1,11 +1,12 @@
 'use client'
-import { buildMenu } from './buildMenu'
+import { useMenu } from './buildMenu'
 
 export default function DesktopMenu({menuItems}) {
+  const menu = useMenu(menuItems)
   return (
     <nav>
         <ul className='main-menu flex flex-col justify-center items-center gap-5'>
-            {buildMenu(menuItems)}
+            {menu}
         </ul>
     </nav>
   )
