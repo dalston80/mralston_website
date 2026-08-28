@@ -11,7 +11,7 @@ const ProjectHighlights = ({projects}) => {
                 <Disclosure key={project._key}>
                     {({open}) => (
                         <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-blue-800 px-4 py-2 mb-3 text-left text-sm font-medium text-gray-100 hover:bg-blue-900 transition-all focus:outline-none focus-visible:ring focus-visible:ring-gray-100/75">
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-blue-800 px-4 py-2 mb-3 text-left text-sm font-medium text-gray-100 hover:bg-blue-900 transition-all focus:outline-hidden focus-visible:ring-3 focus-visible:ring-gray-100/75">
                                 <span>{project.content.name}</span>
                                 <IconStyler className={`${open ? 'rotate-180 transform' : ''} h-5 w-5 text-gray-100 transition-all`}>
                                     <FaChevronUp />

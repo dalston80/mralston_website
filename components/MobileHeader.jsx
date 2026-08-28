@@ -21,7 +21,7 @@ export default function MobileHeader({title, openMenu}) {
         </div>
 
         <Link
-          className="text-yellow-500 flex items-end leading-[3rem] md:leading-[4rem] justify-end flex-grow w-full h-full"
+          className="text-yellow-500 flex items-end leading-12 md:leading-16 justify-end grow w-full h-full"
           href="/"
         >
           {title}
