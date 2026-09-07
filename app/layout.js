@@ -3,6 +3,7 @@ import './global.css'
 import Header from '../components/Header'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { getProfile } from '../sanity/lib/query'
+import { productsEnabled } from '../components/products/utils'
 
 export const metadata = {
   title: 'Dennis Alston | Experienced Web Developer | 17+ Years of Expertise',
@@ -36,8 +37,13 @@ export default async function RootLayout({children}) {
         url: '#experience',
         title: 'Experience'
     },
-    {
+    ...(productsEnabled ? [{
       id: 3,
+        url: '#products',
+        title: 'Products'
+    }] : []),
+    {
+      id: 4,
         url: '#projects',
         title: 'Projects'
     }

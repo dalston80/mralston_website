@@ -5,10 +5,12 @@ import HeroSection from '../components/home/HeroSection'
 import ExperienceDisplay from '../components/experience/ExperienceDisplay'
 import Link from 'next/link'
 import Projects from '../components/projects/Projects'
+import ProductsSection from '../components/products/ProductsSection'
+import { productsEnabled } from '../components/products/utils'
 
 export default async function Home() {
   const profile = await getProfile()
-  
+
   return (
     <>
       <section id="home" className="max-w-7xl mx-auto lg:px-16 px-6 xl:mt-80 mb-40 lg:mb-[600px]">
@@ -23,6 +25,11 @@ export default async function Home() {
           <Link className="text-gray-100 font-bold bg-blue-950 hover:bg-blue-800 transition-all rounded-lg p-3" href={profile[0].resumeURL || ''}>Resume</Link>
         </div>
       </section>
+      {productsEnabled && (
+        <section id="products" className="max-w-7xl mx-auto lg:px-16 px-6 mb-40 lg:mb-80">
+          <ProductsSection />
+        </section>
+      )}
       <section id="projects" className="max-w-7xl mx-auto lg:h-[50vh] lg:px-16 px-6 mb-40 lg:mt-56 lg:mb-80">
         <Projects currentProjects={profile[0].currentProjects} />
       </section>
