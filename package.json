@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "test": "vitest run",
     "sync:products": "node scripts/sync-products.mjs",
     "upload:file": "node scripts/upload-product-file.mjs"
   },
