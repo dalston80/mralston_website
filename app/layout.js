@@ -1,9 +1,21 @@
 import React from 'react'
 import './global.css'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import Header from '../components/Header'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { getProfile } from '../sanity/lib/query'
 import { productsEnabled } from '../components/products/utils'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['500', '700'],
+})
 
 export const metadata = {
   title: 'Dennis Alston | Experienced Web Developer | 17+ Years of Expertise',
@@ -52,7 +64,7 @@ export default async function RootLayout({children}) {
   const profile = await getProfile()
   
   return (
-    <html lang='en' className="scroll-smooth">
+    <html lang='en' className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
         <body className='font-sans'>
           <div className='body-background w-full h-screen fixed z-0'/>
           <main className="flex flex-col lg:flex-row">

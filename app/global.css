@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --grid-template-columns-skills-list: repeat(auto-fit, minmax(100px, 1fr));
   --grid-template-columns-social-links: repeat(auto-fit, minmax(30px, 1fr));
 }
@@ -21,11 +23,16 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
 }
 
 .body-background {
     z-index: -1;
-    background-color: #f8f8fd; 
-    opacity: 0.2;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f8f8fd 12px ), repeating-linear-gradient( #eab30855, #eab308 );
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(234,179,8,0.06) 0%, rgba(23,37,84,0.04) 40%, transparent 70%);
 }

@@ -5,8 +5,8 @@ import ProjectHighlights from "./ProjectHighlights"
 const ExperienceDisplay = ({experienceData}) => {
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-evenly items-center pt-11 mb-10">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight text-blue-950">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-evenly items-center mb-10">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-blue-950 md:col-span-2">
                 My Work Experience
             </h1>
             {experienceData.map(data => {
@@ -17,7 +17,7 @@ const ExperienceDisplay = ({experienceData}) => {
                             <span className="text-md font-bold text-yellow-500">{data.position}</span>
                             <span className="text-md font-bold text-yellow-500">{data.startDate} - {data.currentPosition ? 'Present' : data.endDate}</span>
                         </div>
-                        <p className="text-gray-100 pb-5">{data.description}</p>
+                        <p className="text-gray-100 pb-5 max-w-prose">{data.description}</p>
                         {data.projects && data.projects.length > 0 ? <ProjectHighlights projects={data.projects }/> : null}
                     </div>
                 )
