@@ -1,10 +1,7 @@
 'use client'
 
-import { Inter } from 'next/font/google'
 import IconStyler from '../IconStyler'
 import { IconMap } from '../../helpers/IconMap'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function SkillsList({profile}) {
    

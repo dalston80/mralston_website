@@ -32,7 +32,6 @@
 }
 
 .body-background {
-    z-index: -1;
     opacity: 1;
     background: linear-gradient(180deg, rgba(234,179,8,0.06) 0%, rgba(23,37,84,0.04) 40%, transparent 70%);
 }

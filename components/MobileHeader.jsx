@@ -1,5 +1,5 @@
 
-import { FaSearch, FaBars, FaUser, FaShoppingCart } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa'
 import Link from "next/link"
 import IconStyler from './IconStyler'
 

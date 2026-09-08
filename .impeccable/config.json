@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gray-on-color",
+        "value": "*",
+        "files": [
+          "app/page.js"
+        ],
+        "createdAt": "2026-09-08T15:00:32.180Z",
+        "reason": "Pre-existing site-wide button style (LinkedIn/Resume links): text-gray-100 on bg-blue-950 measures ~13:1 contrast (near-white on navy), not washed out. Confident false positive, unrelated to critique-fix changes."
+      }
+    ]
+  }
+}
