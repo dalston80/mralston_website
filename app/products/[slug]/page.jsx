@@ -22,12 +22,20 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    alternates: {
+      canonical: `/products/${slug}`,
+    },
     openGraph: {
       title,
       description,
       url: `https://mralston.me/products/${slug}`,
       type: 'website',
       images: product.images?.[0]?.url ? [{ url: product.images[0].url }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
   }
 }
@@ -38,8 +46,27 @@ export default async function ProductPage({ params }) {
 
   if (!product || !product.live) notFound()
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: product.tagline,
+    image: product.images?.map((img) => img.url),
+    offers: {
+      '@type': 'Offer',
+      url: `https://mralston.me/products/${slug}`,
+      priceCurrency: 'USD',
+      price: product.price,
+      availability: 'https://schema.org/InStock',
+    },
+  }
+
   return (
     <div className="max-w-7xl mx-auto lg:px-16 px-6 py-16 lg:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <Link href="/#products" className="text-sm text-blue-800 hover:text-yellow-600 transition-colors">
         &larr; All products
       </Link>

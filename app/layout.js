@@ -17,24 +17,29 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['500', '700'],
 })
 
+const title = 'Dennis Alston | Experienced Web Developer | 17+ Years of Expertise'
+const description = 'Dennis Alston, a seasoned web developer from Passaic, NJ, with over 17 years of experience. Specializing in diverse technologies and ready to tackle any web development challenge.'
+
 export const metadata = {
-  title: 'Dennis Alston | Experienced Web Developer | 17+ Years of Expertise',
-  description: 'Dennis Alston, a seasoned web developer from Passaic, NJ, with over 17 years of experience. Specializing in diverse technologies and ready to tackle any web development challenge.',
+  metadataBase: new URL('https://mralston.me'),
+  title,
+  description,
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-      title: 'Dennis Alston | Experienced Web Developer | 17+ Years of Expertise',
-      description: 'Dennis Alston, a seasoned web developer from Passaic, NJ, with over 17 years of experience. Specializing in diverse technologies and ready to tackle any web development challenge.',
+      title,
+      description,
       url: 'https://mralston.me',
       siteName: 'Mr. Alston',
-      images: [
-          {
-              url: 'https://mralston.me/mralston-logo-new.png',
-              width: 164,
-              height: 136,
-          },
-      ],
       locale: 'en-US',
       type: 'website',
-  }
+  },
+  twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+  },
 }
 
 export default async function RootLayout({children}) {
@@ -62,10 +67,33 @@ export default async function RootLayout({children}) {
   ]
 
   const profile = await getProfile()
-  
+  const person = profile?.[0]
+  const personJsonLd = person ? {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: person.fullName,
+    jobTitle: 'Web Developer',
+    description: person.shortBio,
+    url: 'https://mralston.me',
+    image: person.profileImage?.image,
+    address: person.location ? {
+      '@type': 'PostalAddress',
+      addressLocality: person.location,
+    } : undefined,
+    email: person.email,
+    sameAs: person.socialLinks ? Object.values(person.socialLinks).filter(Boolean) : undefined,
+    knowsAbout: person.skills,
+  } : null
+
   return (
     <html lang='en' className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
         <body className='font-sans'>
+          {personJsonLd && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+            />
+          )}
           <div className='body-background w-full h-screen fixed -z-10 pointer-events-none'/>
           <main className="flex flex-col lg:flex-row">
             <Header title={'Mr. Alston'} menuItems={menuItems} socialLinks={profile[0].socialLinks} />
