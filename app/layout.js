@@ -66,7 +66,7 @@ export default async function RootLayout({children}) {
   return (
     <html lang='en' className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
         <body className='font-sans'>
-          <div className='body-background w-full h-screen fixed z-0'/>
+          <div className='body-background w-full h-screen fixed -z-10 pointer-events-none'/>
           <main className="flex flex-col lg:flex-row">
             <Header title={'Mr. Alston'} menuItems={menuItems} socialLinks={profile[0].socialLinks} />
             <div>
