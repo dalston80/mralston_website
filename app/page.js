@@ -2,7 +2,6 @@ import SkillsList from '../components/home/SkillsList'
 import { getProfile } from '../sanity/lib/query'
 
 import HeroSection from '../components/home/HeroSection'
-import AboutSection from '../components/home/AboutSection'
 import FAQSection from '../components/home/FAQSection'
 import ExperienceDisplay from '../components/experience/ExperienceDisplay'
 import Link from 'next/link'
@@ -13,7 +12,6 @@ import { productsEnabled } from '../components/products/utils'
 export default async function Home() {
   const profile = await getProfile()
   const hasProjects = profile[0].currentProjects?.some(project => project.children?.[0]?.text?.trim())
-  const hasFullBio = profile[0].fullBio?.length > 0
 
   return (
     <>
@@ -21,11 +19,6 @@ export default async function Home() {
         <HeroSection profile={profile} />
         <SkillsList profile={profile} />
       </section>
-      {hasFullBio && (
-        <section id="about" className="max-w-7xl mx-auto lg:px-16 px-6 py-16 lg:py-24">
-          <AboutSection profile={profile} />
-        </section>
-      )}
       <section id="experience" className="max-w-7xl mx-auto lg:px-16 px-6 py-16 lg:py-24 flex flex-col gap-8">
         <ExperienceDisplay experienceData={profile[0].experience} />
         <p className="text-base font-bold leading-relaxed text-blue-800 max-w-prose">This is a shorter but more relevant list of my work history. If you would like more details, choose one of the items below.</p>
