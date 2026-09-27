@@ -1,13 +1,17 @@
 import { getAllProductSlugs } from '../sanity/lib/productQueries'
+import { getProfile } from '../sanity/lib/query'
 import { productsEnabled } from '../components/products/utils'
 
 const BASE_URL = 'https://mralston.me'
 
 export default async function sitemap() {
+  const profile = await getProfile()
+  const homeLastModified = profile?.[0]?._updatedAt ? new Date(profile[0]._updatedAt) : new Date()
+
   const routes = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
+      lastModified: homeLastModified,
       changeFrequency: 'monthly',
       priority: 1,
     },
@@ -15,10 +19,10 @@ export default async function sitemap() {
 
   if (productsEnabled) {
     const slugs = await getAllProductSlugs()
-    slugs.forEach(({ slug }) => {
+    slugs.forEach(({ slug, _updatedAt }) => {
       routes.push({
         url: `${BASE_URL}/products/${slug}`,
-        lastModified: new Date(),
+        lastModified: _updatedAt ? new Date(_updatedAt) : new Date(),
         changeFrequency: 'weekly',
         priority: 0.7,
       })

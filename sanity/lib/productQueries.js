@@ -33,7 +33,7 @@ export async function getProductBySlug(slug) {
 
 export async function getAllProductSlugs() {
   return client.fetch(
-    groq`*[_type == "product" && live == true && defined(slug.current)]{"slug": slug.current}`
+    groq`*[_type == "product" && live == true && defined(slug.current)]{"slug": slug.current, _updatedAt}`
   );
 }
 

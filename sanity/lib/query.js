@@ -5,6 +5,7 @@ export async function getProfile() {
   return client.fetch(
     groq`*[_type == "profile"]{
       _id,
+      _updatedAt,
       fullName,
       headline,
       profileImage {alt, "image": asset->url},
